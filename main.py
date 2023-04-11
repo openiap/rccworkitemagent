@@ -1,6 +1,8 @@
 import requests, subprocess, os, stat, time, shutil
 # The EULA for the prebuild rcc is hard to understand, so here is a free version under Apache-2.0 license
 local_filename = "rcc"
+# If testing toward app.openiap.io you MUST update this wiq to your own workitem queue
+defaultwiq = "rcctest"
 if(not os.path.exists(local_filename)):
     url = 'https://github.com/skadefro/rcc-build/raw/master/build/linux64/rcc'
     totalbits = 0
@@ -86,6 +88,7 @@ class Worker:
     async def main(self):
         self.queue = os.environ.get("queue", "")
         self.wiq = os.environ.get("wiq", "")
+        if(self.wiq == ""): self.wiq = defaultwiq
         self.c = openiap.Client()
         self.c.onconnected = self.onconnected
         if(self.queue == ""): self.queue = self.wiq
@@ -106,6 +109,7 @@ if __name__ == '__main__':
     else:
         logging.basicConfig(format="%(levelname)s:%(message)s", level=loglevel)
     wiq = os.environ.get("wiq", "")
+    if(wiq == ""): wiq = defaultwiq
     if(wiq == ""): raise ValueError("Workitem queue name (wiq) is required")
     w = Worker()
     asyncio.run(w.main())

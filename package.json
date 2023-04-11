@@ -1,16 +1,15 @@
 {
-    "name": "rcctest",
+    "name": "rccworkitemagent",
     "version": "0.0.1",
     "description": "Python agent processing workitems using robocorp commandline tool",
     "main": "main.py",
     "author": "OpenIAP ApS / Allan Zimmermann",
     "license": "MPL-2.0",
     "openiap": {
-      "daemon": true,
-      "chromium": true
+        "daemon": true,
+        "chromium": true,
+        "language": "python"
     },
-    "scripts": {
-    },
+    "scripts": {},
     "keywords": []
-  }
-  
+}
