@@ -18,7 +18,7 @@ st = os.stat(local_filename)
 os.chmod(local_filename, st.st_mode | stat.S_IEXEC)
 
 import asyncio, os, openiap, traceback, zlib, json, logging
-import robot
+# import robot
 class Worker:
     async def __ProcessWorkitem(self, workitem, payload):
         logging.info(f"Processing workitem id {workitem._id} retry #{workitem.retries}")
@@ -26,7 +26,10 @@ class Worker:
             os.environ["url"] = payload["url"]
 
         command = [f"{os.getcwd()}/rcc", "run"]
-        subprocess.run(command)
+        result = subprocess.run(command)
+        if(result.returncode != 0):
+            raise ValueError(f"rcc failed with exit code {result}")
+
         # command = 'python -m robot --report NONE --outputdir output --logtitle "Task Log" --variable FAIL:True -t "Execute Google image search and store the first result image" tasks.robot'
         # process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
