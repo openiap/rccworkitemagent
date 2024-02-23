@@ -1,6 +1,6 @@
 {
     "name": "rccworkitemagent",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "Python agent processing workitems using robocorp commandline tool",
     "main": "main.py",
     "author": "OpenIAP ApS / Allan Zimmermann",

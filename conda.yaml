@@ -11,6 +11,8 @@ dependencies:
 
   - pip=20.1
   - pip:
+    - openiap
+    - asyncio
     # Define pip packages here.
     # https://pypi.org/
     - rpaframework==9.1.0 # https://rpaframework.org/releasenotes.html
